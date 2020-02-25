@@ -42,6 +42,19 @@
  
 using namespace std;
 
+long long bigmod(long long b,long long p,long long m){
+	//to calculate (b^p)%m
+	if(p==0) return 1;
+	if(p&1){
+		long long a = bigmod(b,p-1,m);
+		return ((b%m)*(a%m))%m;
+	}
+	else{
+		long long a = bigmod(b,p/2,m);
+		return ((a%m)*(a%m))%m;
+	}
+}
+
 int fib(int n){
 	if(n<=1) return n;
 	return fib(n-2)+fib(n-1);
